@@ -2,7 +2,7 @@ import React from 'react';
 import VirtualList from './components/VirtualList';
 import './app.css';
 
-const total = 10;
+const total = 10000;
 const listData = [];
 const screenHeight = 500;
 const itemHeight = 100;
