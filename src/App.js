@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import VirtualList from './components/VirtualList';
+import './app.css';
+
+const total = 10;
+const listData = [];
+const screenHeight = 500;
+const itemHeight = 100;
+
+for (let i = 0; i < total; i++) {
+  listData.push(`listItem ${i}`)
+}
+
+const renderListItem = (val) => <div className="ListItem" style={{height: itemHeight}}>{val}</div>
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <VirtualList 
+        extraCount={2}
+        screenHeight={screenHeight} 
+        itemHeight={itemHeight}
+        renderItem={renderListItem} 
+        list={listData} 
+      />
     </div>
   );
 }
