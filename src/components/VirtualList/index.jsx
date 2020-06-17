@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useCallback } from 'react';
 import './index.css'
 
-export default function VirtualList({screenHeight, itemHeight, renderItem, list}) {
-  const renderCount = Math.ceil(screenHeight / itemHeight);
+export default function VirtualList({extraCount, screenHeight, itemHeight, renderItem, list}) {
+  const renderCount = Math.ceil(screenHeight / itemHeight) + extraCount;
   const [renderList, setRenderList] = useState(list.slice(0, renderCount))
   const [startOffset, setStartOffset] = useState(0);
   const [activeKey, setActiveKey] = useState(null);
@@ -36,7 +36,6 @@ export default function VirtualList({screenHeight, itemHeight, renderItem, list}
       className="VirtualListWrapper" 
       style={{height: screenHeight}}
       onScroll={onListScroll}
-      onKeyPress={onHandleKeyup}
     >
       <div className="VirtualListPhantom" style={{height: list.length * itemHeight}}></div>
       <div className="VirtualList" style={{transform: `translate3d(0, ${startOffset}px, 0)`}}>
